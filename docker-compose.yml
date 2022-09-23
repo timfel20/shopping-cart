@@ -1,0 +1,10 @@
+# docker-compose.yaml
+version: '3'
+services:
+  database:
+    image: library/mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: happy
+      MYSQL_DATABASE: happy_shop
+    ports:
+      - 3307:3307
