@@ -18,7 +18,7 @@ class CartType extends AbstractType
                 'entry_type' => CartItemType::class
             ])
             ->add('save', SubmitType::class)
-            ->add('clear', SubmitType::class);
+           /*  ->add('clear', SubmitType::class); */
         ;
     }
 

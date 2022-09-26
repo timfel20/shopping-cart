@@ -1,0 +1,42 @@
+{%  extends 'base.html.twig'%}
+
+{% block title %} shopping cart {% endblock %}
+
+{% block body %}
+
+<style>
+        .required{
+            color: #222;
+        }
+        .form-control{
+            border: 1px solid #b8bdc1;
+        }
+</style>
+
+ <section class="intro mt-3">
+    <div class="bg-image h-100">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-7 col-xl-6">
+              <div class="card mask-custom">
+                <div class="card-body p-5 text-white" style="margin-top: -40px; margin-bottom:-40px">
+
+                  <div class="my-4">
+
+                    <h2 class="text-center mb-3">create Data</h2>
+
+                        {{ form_start(form)}}
+                        {{ form_widget(form)}}
+                        {{ form_end(form)}}
+               </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock body %}

@@ -9,13 +9,16 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Manager\CartManager;
 
+
 /**
  * Class ProductController
  * @package App\Controller
  */
 class ProductController extends AbstractController
 {
+
     /**
+     * Helps to see details of a specific product, the form is to add the quantity of product
      * @Route("/product/{id}", name="product.detail")
      */
     public function detail(Product $product, Request $request, CartManager $cartManager ): Response

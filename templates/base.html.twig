@@ -10,6 +10,11 @@
               integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
               crossorigin="anonymous">
     {% endblock %}
+    
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+    
 </head>
 <body>
 {% block header %}
@@ -17,7 +22,10 @@
         <a href="{{ path('home') }}" class="navbar-brand">
             Happy Shop
         </a>
-         <div class="navbar-nav">
+         <div class="navbar-nav" style="display:flex; gap:20px; flex-direction: row ">
+            <a href="{{ path('create_article') }}" class="btn btn-light">
+                Create
+            </a>
             <a href="{{ path('cart') }}" class="btn btn-light">
                 Cart
             </a>
