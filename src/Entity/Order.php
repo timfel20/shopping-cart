@@ -31,13 +31,6 @@ class Order
     private $status = self::STATUS_CART;
 
     /**
-     * An order that is in progress, not placed yet.
-     *
-     * @var string
-     */
-    const STATUS_CART = 'cart';
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -46,6 +39,13 @@ class Order
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * An order that is in progress, not placed yet.
+     *
+     * @var string
+     */
+    public const STATUS_CART = 'cart';
 
     public function __construct()
     {
@@ -58,7 +58,7 @@ class Order
     }
 
     /**
-     * @return Collection<int, OrderItem>
+     * @return Collection|OrderItem[]
      */
     public function getItems(): Collection
     {
@@ -67,33 +67,24 @@ class Order
 
     public function addItem(OrderItem $item): self
     {
-    foreach ($this->getItems() as $existingItem) {
-        // The item already exists, update the quantity
-        if ($existingItem->equals($item)) {
-            $existingItem->setQuantity(
-                $existingItem->getQuantity() + $item->getQuantity()
-            );
-            return $this;
+        foreach ($this->getItems() as $existingItem) {
+            // The item already exists, update the quantity
+            if ($existingItem->equals($item)) {
+                $existingItem->setQuantity(
+                    $existingItem->getQuantity() + $item->getQuantity()
+                );
+
+                return $this;
+            }
         }
-    }
 
-    $this->items[] = $item;
-    $item->setOrderRef($this);
-
-    return $this;
-    }  
-
-    /* public function addItem(OrderItem $item): self
-    {
-        if (!$this->items->contains($item)) {
-            $this->items[] = $item;
-            $item->setOrderRef($this);
-        }
+        $this->items[] = $item;
+        $item->setOrderRef($this);
 
         return $this;
-    } */
+    }
 
-   /*  public function removeItem(OrderItem $item): self
+    public function removeItem(OrderItem $item): self
     {
         if ($this->items->removeElement($item)) {
             // set the owning side to null (unless already changed)
@@ -103,8 +94,7 @@ class Order
         }
 
         return $this;
-    } */
-
+    }
 
     /**
      * Removes all items from the order.
@@ -114,7 +104,7 @@ class Order
     public function removeItems(): self
     {
         foreach ($this->getItems() as $item) {
-            $this->removeItems($item);
+            $this->removeItem($item);
         }
 
         return $this;
@@ -158,15 +148,15 @@ class Order
 
     /**
      * Calculates the order total.
-     *
-     * @return float
      */
-    public function getTotal() : float
+    public function getTotal(): float
     {
         $total = 0;
-        foreach ($this-> getItems() as $item){
-           $total += $item->getTotal();
+
+        foreach ($this->getItems() as $item) {
+            $total += $item->getTotal();
         }
-        return $total;        
+
+        return $total;
     }
 }
