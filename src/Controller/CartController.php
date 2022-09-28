@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Order;
 
 
 /**
@@ -39,4 +41,17 @@ class CartController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/", name="")
+     */
+   /*  public function getQty(EntityManagerInterface $em): Response
+    {
+        $repository = $em->getRepository(Order::class);
+
+       $order = $repository->count([]);
+       dd($order);
+
+        return $this->render('index.html.twig');
+    } */
 }
