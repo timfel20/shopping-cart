@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-8">
                 <h1 style="font-size: 25px" class="mt-4 mt-md-0">{{ product.name }}</h1>
-                <h2 style="color: #3582d5; font-size: 20px">{{ product.price }} €</h2>
+                <h2 style="color:  #EE4E34; font-size: 20px">{{ product.price }} €</h2>
   
                 <b>Description: </b>{{ product.description }}
                 {{ form_start(form, {'attr': {'class': 'mt-3'}}) }}
@@ -25,7 +25,7 @@
                         {{ form_errors(form.quantity) }}
                     </div>
                 </div>
-                {{ form_widget(form.add, {'attr': {'class': 'btn btn-warning w-25 text-white', 'style': 'background-color: #3582d5; border:none'}}) }}
+                {{ form_widget(form.add, {'attr': {'class': 'btn btn-warning w-25 text-white', 'style': 'background-color:  #EE4E34; border:none'}}) }}
                 {{ form_end(form) }}
             </div>
         </div>
